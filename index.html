@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CyberGuard — School Safety System</title>
+  <meta name="description" content="CyberGuard: A secure, anonymous cyberbullying incident reporting and counselor alert system for schools."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/main.css">
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    /* ── Header bar ── */
+    .top-bar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 24px;
+      z-index: 50;
+    }
+    .top-bar-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--text-strong);
+    }
+    .top-bar-icon {
+      width: 32px; height: 32px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      border-radius: 9px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.9rem;
+      box-shadow: 0 4px 16px var(--accent-glow);
+    }
+
+    /* ── Login Container ── */
+    .login-wrap {
+      width: 100%;
+      max-width: 440px;
+      position: relative;
+      z-index: 10;
+    }
+
+    /* ── School Badge ── */
+    .school-badge {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 28px;
+      animation: fade-in 0.5s var(--ease);
+    }
+    .school-badge .logo-ring {
+      width: 64px; height: 64px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      border-radius: 20px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.8rem;
+      box-shadow: 0 8px 32px var(--accent-glow);
+      animation: logo-pulse 3s ease-in-out infinite;
+    }
+    @keyframes logo-pulse {
+      0%,100% { box-shadow: 0 8px 32px var(--accent-glow); }
+      50%      { box-shadow: 0 12px 48px rgba(99,102,241,0.5); }
+    }
+    .school-info { text-align: left; }
+    .school-info h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: var(--text-strong);
+      line-height: 1.1;
+      background: linear-gradient(135deg, #a5b4fc, #c4b5fd);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .school-info p {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-weight: 500;
+      margin-top: 3px;
+    }
+
+    /* ── Login Card ── */
+    .login-card {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--r-2xl);
+      padding: 32px;
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      box-shadow: 0 24px 80px var(--shadow);
+      animation: slide-up 0.45s var(--ease);
+    }
+
+    /* ── Role Tabs ── */
+    .role-tabs {
+      display: flex;
+      gap: 8px;
+      background: rgba(0,0,0,0.18);
+      border-radius: var(--r-lg);
+      padding: 5px;
+      margin-bottom: 28px;
+      border: 1px solid var(--glass-border);
+    }
+    :root[data-theme="light"] .role-tabs { background: rgba(0,0,0,0.06); }
+    .role-tab {
+      flex: 1;
+      padding: 10px 8px;
+      border: none;
+      border-radius: var(--r-md);
+      background: transparent;
+      color: var(--text-muted);
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s var(--ease);
+    }
+    .role-tab.active {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #fff;
+      box-shadow: 0 4px 16px var(--accent-glow);
+    }
+    .role-tab:not(.active):hover { background: var(--glass-hover); color: var(--text-strong); }
+
+    /* ── Form Fields ── */
+    .field-group { margin-bottom: 18px; }
+    .field-label {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 7px;
+      font-family: 'JetBrains Mono', monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .field-input-wrap { position: relative; }
+    .field-icon {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1rem;
+      color: var(--text-muted);
+      pointer-events: none;
+    }
+    .field-input {
+      width: 100%;
+      padding: 11px 14px 11px 38px;
+      background: var(--input-bg);
+      border: 1px solid var(--input-border);
+      border-radius: var(--r-md);
+      color: var(--text-strong);
+      font-size: 0.9rem;
+      outline: none;
+      transition: all 0.2s var(--ease);
+      box-sizing: border-box;
+    }
+    .field-input:focus {
+      border-color: var(--accent);
+      background: var(--accent-soft);
+      box-shadow: 0 0 0 3px var(--accent-glow);
+    }
+
+    /* ── Btn Login ── */
+    .btn-login {
+      width: 100%;
+      padding: 13px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      border: none;
+      border-radius: var(--r-md);
+      color: #fff;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.98rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.25s var(--ease);
+      box-shadow: 0 4px 20px var(--accent-glow);
+      margin-top: 6px;
+      letter-spacing: 0.3px;
+    }
+    .btn-login:hover { transform: translateY(-2px); box-shadow: 0 8px 30px var(--accent-glow); }
+    .btn-login:active { transform: translateY(0); }
+
+    /* ── Anon Button ── */
+    .btn-anon {
+      width: 100%;
+      padding: 11px;
+      background: var(--success-soft);
+      border: 1px solid rgba(16,185,129,0.3);
+      border-radius: var(--r-md);
+      color: #34d399;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s var(--ease);
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+    }
+    .btn-anon:hover { background: rgba(16,185,129,0.18); transform: translateY(-1px); }
+    #anonBtnWrap { display: block; }
+    #anonBtnWrap.hidden { display: none; }
+
+    /* ── Divider ── */
+    .or-divider {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 14px 0;
+      color: var(--text-dim);
+      font-size: 0.75rem;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .or-divider::before, .or-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--glass-border);
+    }
+
+    /* ── Demo Hint ── */
+    .demo-hint {
+      margin-top: 20px;
+      padding: 12px 16px;
+      background: rgba(0,0,0,0.12);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--r-md);
+      text-align: center;
+    }
+    :root[data-theme="light"] .demo-hint { background: rgba(0,0,0,0.04); }
+    .demo-hint p {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .demo-hint strong { color: var(--text-strong); }
+
+    /* ── Error ── */
+    .error-msg {
+      display: none;
+      align-items: center;
+      gap: 7px;
+      color: #f87171;
+      font-size: 0.82rem;
+      margin-top: 10px;
+      padding: 10px 14px;
+      background: var(--danger-soft);
+      border: 1px solid rgba(239,68,68,0.3);
+      border-radius: var(--r-md);
+      animation: shake 0.4s ease;
+    }
+    .error-msg.show { display: flex; }
+    @keyframes shake {
+      0%,100% { transform: translateX(0); }
+      20%,60%  { transform: translateX(-5px); }
+      40%,80%  { transform: translateX(5px); }
+    }
+
+    /* ── Safety badges ── */
+    .safety-row {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+    .safety-pill {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 5px 10px;
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: 99px;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+  <!-- Animated blobs -->
+  <div class="bg-blobs">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+
+  <!-- Top bar -->
+  <div class="top-bar">
+    <div class="top-bar-brand">
+      <div class="top-bar-icon">🛡️</div>
+      CyberGuard
+    </div>
+    <button class="theme-btn theme-toggle" onclick="toggleTheme()" title="Toggle theme">🌙</button>
+  </div>
+
+  <!-- Login Form -->
+  <div class="login-wrap">
+    <!-- School branding -->
+    <div class="school-badge">
+      <div class="logo-ring">🛡️</div>
+      <div class="school-info">
+        <h1>CyberGuard</h1>
+        <p>School Safety &amp; Counselor Alert System</p>
+      </div>
+    </div>
+
+    <!-- Card -->
+    <div class="login-card">
+      <!-- Role tabs -->
+      <div class="role-tabs">
+        <button class="role-tab active" onclick="setRole('student')" id="tab-student">🎓 Student</button>
+        <button class="role-tab" onclick="setRole('counselor')" id="tab-counselor">🧑‍💼 Counselor</button>
+      </div>
+
+      <!-- Form -->
+      <form id="loginForm" onsubmit="handleLogin(event)" autocomplete="off" novalidate>
+        <div class="field-group">
+          <label class="field-label" for="username">Username / Student ID</label>
+          <div class="field-input-wrap">
+            <span class="field-icon">👤</span>
+            <input class="field-input" id="username" type="text" placeholder="Enter your username" required />
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" for="password">Password</label>
+          <div class="field-input-wrap">
+            <span class="field-icon">🔑</span>
+            <input class="field-input" id="password" type="password" placeholder="Enter your password" required />
+          </div>
+        </div>
+
+        <div class="error-msg" id="errorMsg">
+          <span>❌</span>
+          <span>Invalid credentials. Please try again.</span>
+        </div>
+
+        <button type="submit" class="btn-login" id="loginBtn">Sign In Securely →</button>
+      </form>
+
+      <!-- Anonymous bypass (students only) -->
+      <div id="anonBtnWrap">
+        <div class="or-divider">or</div>
+        <button class="btn-anon" onclick="anonReport()">
+          🔒 Report Anonymously — No Login Required
+        </button>
+      </div>
+
+      <!-- Demo hint -->
+      <div class="demo-hint">
+        <p>
+          <strong>Student:</strong> student / student123<br>
+          <strong>Counselor:</strong> counselor / counselor123
+        </p>
+      </div>
+    </div>
+
+    <!-- Safety badges -->
+    <div class="safety-row">
+      <div class="safety-pill">🔒 Anonymous Reporting</div>
+      <div class="safety-pill">🛡️ PII Protected</div>
+      <div class="safety-pill">🏫 School Verified</div>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    let currentRole = 'student';
+
+    function setRole(role) {
+      currentRole = role;
+      document.querySelectorAll('.role-tab').forEach(t => t.classList.remove('active'));
+      document.getElementById('tab-' + role).classList.add('active');
+      // Show/hide anon button
+      document.getElementById('anonBtnWrap').classList.toggle('hidden', role !== 'student');
+      // Clear error
+      document.getElementById('errorMsg').classList.remove('show');
+    }
+
+    async function handleLogin(e) {
+      e.preventDefault();
+      const btn = document.getElementById('loginBtn');
+      const u   = document.getElementById('username').value.trim();
+      const p   = document.getElementById('password').value.trim();
+      const err = document.getElementById('errorMsg');
+
+      btn.textContent = 'Signing in…';
+      btn.disabled = true;
+
+      const ok = await CG_Auth.login(currentRole, u, p);
+      if (ok) {
+        err.classList.remove('show');
+        btn.textContent = '✓ Authenticated';
+        setTimeout(() => {
+          window.location.href = currentRole === 'counselor' ? '/pages/counselor.html' : '/pages/student.html';
+        }, 400);
+      } else {
+        err.classList.add('show');
+        document.getElementById('password').value = '';
+        btn.textContent = 'Sign In Securely →';
+        btn.disabled = false;
+      }
+    }
+
+    async function anonReport() {
+      // Anonymous users get a temporary token from backend
+      const ok = await CG_Auth.login('student', 'student', 'student123');
+      if (ok) {
+        sessionStorage.setItem('cg_anonymous', 'true');
+        sessionStorage.setItem('cg_name', 'Anonymous');
+        window.location.href = '/pages/student.html';
+      } else {
+        // Fallback: allow access without full auth for anonymous reporting
+        sessionStorage.setItem('cg_role', 'student');
+        sessionStorage.setItem('cg_name', 'Anonymous');
+        sessionStorage.setItem('cg_anonymous', 'true');
+        window.location.href = '/pages/student.html';
+      }
+    }
+  </script>
+</body>
+</html>

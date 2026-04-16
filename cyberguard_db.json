@@ -1,0 +1,251 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "student",
+      "passwordHash": "$2a$10$W7nWBUYB9U58aUu29NWQ6efr4haPMAnRN7ZwHHk9siNhAXODzv/yS",
+      "role": "student",
+      "name": "Alex Johnson",
+      "grade": "Grade 10",
+      "title": null
+    },
+    {
+      "id": 2,
+      "username": "student2",
+      "passwordHash": "$2a$10$8bHXXYUZpS8ehTbOpuEjcuGUWMK3ic83gZuRvZQ85A8e2dEvdSEwK",
+      "role": "student",
+      "name": "Sam Rivera",
+      "grade": "Grade 9",
+      "title": null
+    },
+    {
+      "id": 3,
+      "username": "counselor",
+      "passwordHash": "$2a$10$VZ9GcBpW7vmUN.M5NYa5SOZVPtgS6aUhUHF84EnDqjdBRa9exDfI.",
+      "role": "counselor",
+      "name": "Dr. Morgan Ellis",
+      "grade": null,
+      "title": "School Counselor"
+    },
+    {
+      "id": 4,
+      "username": "admin",
+      "passwordHash": "$2a$10$BEi1uDi8OFW9OznPcS9fGuCPahDNnFVw4OWd3TU4H2Fah2wbYJDsi",
+      "role": "counselor",
+      "name": "Principal Davies",
+      "grade": null,
+      "title": "School Principal"
+    }
+  ],
+  "reports": [
+    {
+      "id": "RPT-009",
+      "timestamp": "2026-04-16T21:34:32.475Z",
+      "platform": "Instagram",
+      "bullyingType": "threats",
+      "severity": "high",
+      "frequency": "Daily",
+      "duration": "More than 1 month",
+      "reportText": "someone is threatening me badly for amonth",
+      "extra": "",
+      "summary": "HIGH PRIORITY: HIGH severity threatening behavior reported on Instagram. Daily pattern incidents over more than 1 month. Same-day counselor review recommended.",
+      "interventions": [
+        "Schedule same-day counselor meeting",
+        "Evidence preservation (screenshots/emails)",
+        "Principal escalation",
+        "Parent emergency contact",
+        "Student safety plan activation",
+        "Consider law enforcement notification"
+      ],
+      "status": "pending",
+      "anonymous": true,
+      "piiClean": true,
+      "aiClassified": true
+    },
+    {
+      "id": "RPT-001",
+      "timestamp": "2026-04-09T19:09:10.215Z",
+      "platform": "Instagram",
+      "bullyingType": "verbal",
+      "severity": "medium",
+      "frequency": "Daily",
+      "duration": "2 weeks",
+      "reportText": "Someone in my class keeps posting mean comments under my photos saying I am ugly and that nobody likes me. It happens almost every day. I feel scared to post anything now and I keep deleting my photos.",
+      "extra": "It started after a group project where we disagreed.",
+      "summary": "Repeated verbal harassment on Instagram targeting the student's appearance and social standing over a 2-week period. Daily nature of incidents suggests escalating pattern requiring timely intervention.",
+      "interventions": [
+        "Platform content report filing",
+        "Peer mediation session",
+        "Digital wellness counseling",
+        "Parent-counselor collaboration meeting",
+        "Follow-up check-in in 1 week"
+      ],
+      "status": "reviewing",
+      "anonymous": true,
+      "piiClean": true,
+      "aiClassified": true
+    },
+    {
+      "id": "RPT-002",
+      "timestamp": "2026-04-12T19:09:10.215Z",
+      "platform": "WhatsApp Group",
+      "bullyingType": "social",
+      "severity": "high",
+      "frequency": "Multiple times a day",
+      "duration": "1 month",
+      "reportText": "A group of students created a WhatsApp group without me and they share screenshots of my private messages making fun of what I write. I found out because a friend told me. Now everyone ignores me at lunch and someone wrote something on my desk.",
+      "extra": "",
+      "summary": "Organized social exclusion via private WhatsApp group combined with real-world ostracism. Screenshot sharing of private content is a serious privacy violation. Month-long duration indicates sustained campaign.",
+      "interventions": [
+        "Schedule same-day counselor meeting",
+        "Group mediation and restorative justice circle",
+        "Social integration support plan",
+        "Weekly counselor check-in for 1 month",
+        "Parent notification"
+      ],
+      "status": "action_taken",
+      "anonymous": true,
+      "piiClean": true,
+      "aiClassified": true
+    },
+    {
+      "id": "RPT-003",
+      "timestamp": "2026-04-15T19:09:10.215Z",
+      "platform": "School Email",
+      "bullyingType": "threats",
+      "severity": "critical",
+      "frequency": "Once",
+      "duration": "Single incident",
+      "reportText": "I received an anonymous email through the school system saying that if I tell anyone about what happened in the gym last week something very bad will happen to me. I am very scared and cannot sleep properly. I have saved the email.",
+      "extra": "I believe I know who sent it but I am scared to say.",
+      "summary": "CRITICAL: Direct anonymous threat via school email system indicating possible witness intimidation. Student reports psychological distress and sleep disruption. Evidence preserved. Immediate administrative escalation and possible law enforcement involvement required.",
+      "interventions": [
+        "⚠️ IMMEDIATE: Principal escalation — ACTION REQUIRED NOW",
+        "Evidence preservation (email screenshot + headers)",
+        "Law enforcement notification if principal deems necessary",
+        "Student safety plan activation",
+        "Parent emergency contact",
+        "Daily counselor check-in until resolved"
+      ],
+      "status": "escalated",
+      "anonymous": true,
+      "piiClean": true,
+      "aiClassified": true
+    },
+    {
+      "id": "RPT-004",
+      "timestamp": "2026-04-06T19:09:10.215Z",
+      "platform": "Snapchat",
+      "bullyingType": "verbal",
+      "severity": "low",
+      "frequency": "Once or twice",
+      "duration": "3 days",
+      "reportText": "Someone sent me a snap calling me names and saying mean things about how I look. It happened a couple of times but seems to have stopped.",
+      "extra": "",
+      "summary": "Minor verbal incident on Snapchat. Low frequency and short duration with apparent cessation. Monitoring recommended with proactive digital literacy guidance.",
+      "interventions": [
+        "Informal counselor check-in",
+        "Digital literacy session on online safety",
+        "Self-report encouraged if recurs",
+        "Monitor for escalation"
+      ],
+      "status": "resolved",
+      "anonymous": true,
+      "piiClean": true,
+      "aiClassified": true
+    },
+    {
+      "id": "RPT-005",
+      "timestamp": "2026-04-14T19:09:10.215Z",
+      "platform": "TikTok",
+      "bullyingType": "sexual",
+      "severity": "high",
+      "frequency": "A few times a week",
+      "duration": "1 week",
+      "reportText": "Someone has been sending me inappropriate photos and messages that make me very uncomfortable. They keep asking me to send photos back and threatening to tell people things if I don't. I do not know how they got my number.",
+      "extra": "",
+      "summary": "High severity sexual harassment involving coercion and inappropriate imagery. Possible online grooming indicators. Mandatory reporting protocols may apply. Designated safeguarding officer must be involved immediately.",
+      "interventions": [
+        "⚠️ IMMEDIATE: Designated Safeguarding Officer notification",
+        "Mandatory reporting protocol review",
+        "Victim support specialist assignment",
+        "Device evidence preservation (do not delete messages)",
+        "Legal authority notification",
+        "Parent/guardian emergency contact"
+      ],
+      "status": "escalated",
+      "anonymous": true,
+      "piiClean": true,
+      "aiClassified": true
+    },
+    {
+      "id": "RPT-006",
+      "timestamp": "2026-04-11T19:09:10.215Z",
+      "platform": "Discord",
+      "bullyingType": "social",
+      "severity": "medium",
+      "frequency": "A few times a week",
+      "duration": "2 weeks",
+      "reportText": "There is a Discord server that a bunch of people from my class are in. They keep kicking me whenever I join and posting things mocking my gaming style and calling me terrible names. Even my old friends are doing it now.",
+      "extra": "I have screenshots.",
+      "summary": "Repeated social exclusion and verbal harassment on Discord gaming server. Loss of previously established friendships indicates expanding social impact. Screenshots exist as evidence, which should be preserved.",
+      "interventions": [
+        "Evidence collection (screenshots)",
+        "Platform abuse report to Discord",
+        "Peer support group referral",
+        "Counselor mediation with friend group",
+        "Bi-weekly check-ins for 1 month"
+      ],
+      "status": "reviewing",
+      "anonymous": true,
+      "piiClean": true,
+      "aiClassified": true
+    },
+    {
+      "id": "RPT-007",
+      "timestamp": "2026-04-13T19:09:10.215Z",
+      "platform": "Text Messages (SMS)",
+      "bullyingType": "threats",
+      "severity": "high",
+      "frequency": "Daily",
+      "duration": "1 week",
+      "reportText": "I have been getting anonymous text messages every day with threats like \"watch your back\" and \"you will regret this\". I am scared to walk home alone now and my grades are dropping because I cannot focus.",
+      "extra": "I changed my number but they keep finding it.",
+      "summary": "High severity daily threatening SMS messages causing significant psychological impact including academic decline and fear for personal safety. Persistent contact despite number change suggests organized effort.",
+      "interventions": [
+        "Schedule same-day counselor meeting",
+        "Report to phone carrier + police non-emergency line",
+        "Student safety escort plan (school to home)",
+        "Academic support consultation",
+        "Parent notification and safety plan",
+        "Daily counselor check-in"
+      ],
+      "status": "pending",
+      "anonymous": true,
+      "piiClean": true,
+      "aiClassified": true
+    },
+    {
+      "id": "RPT-008",
+      "timestamp": "2026-04-10T19:09:10.215Z",
+      "platform": "School Platform / Portal",
+      "bullyingType": "verbal",
+      "severity": "low",
+      "frequency": "Once",
+      "duration": "Single incident",
+      "reportText": "Someone left an unkind anonymous comment on my project submission on the school portal saying my work was stupid and that I should not be in the class.",
+      "extra": "",
+      "summary": "Single low-severity verbal incident on school platform. Unkind anonymous comment on academic work. Single occurrence with no threat component. Standard monitoring protocol.",
+      "interventions": [
+        "Review school platform anonymity settings",
+        "Report to platform administrator to trace account",
+        "Informal counselor conversation",
+        "Monitor for repetition"
+      ],
+      "status": "resolved",
+      "anonymous": true,
+      "piiClean": true,
+      "aiClassified": false
+    }
+  ]
+}
